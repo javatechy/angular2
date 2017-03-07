@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 <h2>Address</h2>
 <li>Street :  {{address.street}}</li>
 <li>Hobbies :  {{hobbies}}</li>
-<button (click)="toggleHobbies()"> Show Hobies</button>
+<button (click)="toggleHobbies()"> {{showHobbies ? "Hide Hobbies":"Show Hobbies"}}</button>
 <div *ngIf="showHobbies">
 <ul >
 <li *ngFor="let hobby of hobbies">
