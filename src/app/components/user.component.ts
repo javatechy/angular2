@@ -9,11 +9,14 @@ import { Component } from '@angular/core';
 <h2>Address</h2>
 <li>Street :  {{address.street}}</li>
 <li>Hobbies :  {{hobbies}}</li>
-<ul>
+<button (click)="toggleHobbies()"> Show Hobies</button>
+<div *ngIf="showHobbies">
+<ul >
 <li *ngFor="let hobby of hobbies">
        {{hobby}}
 </li>
 </ul>
+</div>
 `,
 })
 export class UserComponent  {
@@ -21,6 +24,7 @@ export class UserComponent  {
   email :string;
   address :address;
   hobbies :string[];
+  showHobbies :boolean;
   constructor(){
     this.name = 'Angular';
     this.email = 'deepak@gmail.com';
@@ -28,7 +32,17 @@ export class UserComponent  {
       street :'1St Street',
       houseNumber : 1102
     };
-    this.hobbies =['music','sports']
+    this.hobbies =['music','sports'];
+    this.showHobbies=false;
+
+  }
+
+  toggleHobbies(){
+    if(this.showHobbies==true){
+      this.showHobbies=false;
+    }else{
+      this.showHobbies=true;
+    }
   }
 }
 interface  address{
