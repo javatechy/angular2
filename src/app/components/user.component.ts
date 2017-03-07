@@ -12,11 +12,26 @@ import { Component } from '@angular/core';
 <button (click)="toggleHobbies()"> {{showHobbies ? "Hide Hobbies":"Show Hobbies"}}</button>
 <div *ngIf="showHobbies">
 <ul >
-<li *ngFor="let hobby of hobbies">
-       {{hobby}}
+<li *ngFor="let hobby of hobbies; let i=index" >
+       {{hobby}} <button (click) ="deleteHobby(i)">REMOVE</button>
 </li>
 </ul>
 </div>
+<form (submit) ="addHobby(hobby.value)">
+<label> Add hobby : </label>
+<input type="text" name="hobby" #hobby /> <br/>
+</form>
+<br/>
+<hr/>
+<h2> Edit User Data</h2>
+<form>
+<label> Name : </label>
+<input type="text" name="name" [(ngModel)]="name" /> <br/><label>Email ID : </label>
+<input type="text" name="email" [(ngModel)]="email" /><br/><label> Street  : </label>
+<input type="text" name="address.street" [(ngModel)]="address.street" /><br/><label> House Number : </label>
+<input type="text" name="address.houseNumber" [(ngModel)]="address.houseNumber" /><br/>
+</form>
+<br/>
 `,
 })
 export class UserComponent  {
@@ -36,13 +51,18 @@ export class UserComponent  {
     this.showHobbies=false;
 
   }
-
+  addHobby(hobby: string){
+  this.hobbies.push(hobby);
+  }
   toggleHobbies(){
     if(this.showHobbies==true){
       this.showHobbies=false;
     }else{
       this.showHobbies=true;
     }
+  }
+  deleteHobby(i :number){
+    this.hobbies.splice(i,1);
   }
 }
 interface  address{
