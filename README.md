@@ -1,3 +1,9 @@
+# To make a new component 
+-Add a new file  in app folder
+- Make entry in  app.module.ts
+
+
+
 # Angular QuickStart Source
 [![Build Status][travis-badge]][travis-badge-url]
 
