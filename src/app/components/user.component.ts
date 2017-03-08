@@ -34,19 +34,11 @@ import {PostsService}  from '../services/posts.service';
 <br/>
 
 <h1>Posts</h1>
-<!--
-<div *ngfor="let post  of posts">
+
+<div *ngFor="let post  of posts">
 <h3>{{post.title}}</h3>
-<h3>{{post.body}}</h3>
+<h4>{{post.body}}</h4>
 </div>
-
-<ul >
-<li *ngfor="let pp  of posts">
-      {{pp.body}} 
-</li>
-</ul>
--->
-
 `,
   providers: [PostsService]
 })
