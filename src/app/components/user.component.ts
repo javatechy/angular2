@@ -1,6 +1,6 @@
 // Main app compnent
 import { Component } from '@angular/core';
-
+import {PostsService}  from '../services/posts.service';
 // Decorator
 @Component({
   selector: 'user',
@@ -32,7 +32,23 @@ import { Component } from '@angular/core';
 <input type="text" name="address.houseNumber" [(ngModel)]="address.houseNumber" /><br/>
 </form>
 <br/>
+
+<h1>Posts</h1>
+<!--
+<div *ngfor="let post  of posts">
+<h3>{{post.title}}</h3>
+<h3>{{post.body}}</h3>
+</div>
+
+<ul >
+<li *ngfor="let pp  of posts">
+      {{pp.body}} 
+</li>
+</ul>
+-->
+
 `,
+  providers: [PostsService]
 })
 export class UserComponent  {
   name :string;
@@ -40,7 +56,8 @@ export class UserComponent  {
   address :address;
   hobbies :string[];
   showHobbies :boolean;
-  constructor(){
+  posts:Post[];
+  constructor(private postsService:PostsService){
     this.name = 'Angular';
     this.email = 'deepak@gmail.com';
     this.address = {
@@ -49,7 +66,11 @@ export class UserComponent  {
     };
     this.hobbies =['music','sports'];
     this.showHobbies=false;
-
+    this.postsService.getPosts().subscribe(posts=>{
+    console.log(posts);
+    this.posts=posts;
+    }
+);
   }
   addHobby(hobby: string){
   this.hobbies.push(hobby);
@@ -68,4 +89,11 @@ export class UserComponent  {
 interface  address{
   street : string;
   houseNumber:number
+}
+
+interface  Post{
+  id:number;
+  userId: number;
+  body:string;
+  title:string
 }
