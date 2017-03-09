@@ -30,6 +30,11 @@ export class AboutComponent  {
         this.posts=posts;
       }
     );
+    this.postsService.postRequest({userIds:"ZU201702031340530896"}).subscribe(posts=>{
+      console.log("HIT SUCCES API - RESPONSE =>"+JSON.stringify(posts));
+       // this.posts=posts;
+      }
+    );
   }
   addHobby(hobby: string){
     this.hobbies.push(hobby);
