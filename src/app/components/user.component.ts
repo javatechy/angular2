@@ -6,7 +6,7 @@ import {PostsService}  from '../services/posts.service';
   moduleId :module.id,
   selector: 'user',
   // refers to index.html file
-  templateUrl:'user.component.html',
+  templateUrl:'../html/user.html',
   providers: [PostsService]
 })
 export class UserComponent  {

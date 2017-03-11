@@ -10,14 +10,15 @@ export  class  PostsService{
   baseUrl:string;
 
   constructor(private http:Http){
-    this.baseUrl = 'http://localhost:6061';
+    //this.baseUrl = 'http://52.209.79.99:8080';
+    this.baseUrl = 'http://localhost:5050';
     console.log('Post Service Initaislized');
   }
   getPosts(){
     return this.http.get("https://jsonplaceholder.typicode.com/posts").map(res=>res.json());
   }
-  postRequest(body:any){
-    this.url =  this.makeUrl('TEST');
+  postRequest(serviceName:string,body:any){
+    this.url =  this.makeUrl(serviceName);
   //  body = {userIds:'23218390821903'};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -31,8 +32,8 @@ export  class  PostsService{
   }
   makeUrl(serName:string):string{
     switch(serName){
-      case 'TEST':
-         return this.baseUrl+'/dd/operation/d';
+      case 'INITIATE_PAYBACK':
+         return this.baseUrl+'/zauto/operation/payback';
     }
   }
 }

@@ -12,7 +12,7 @@ import {PostsService} from "./services/posts.service";
 <li><a routerLink="/about">About</a></li>
 <li><a routerLink="/home">Home</a></li>
 </ul><hr/>`,*/
-  templateUrl: 'app/html/home.html'
+  templateUrl: '../app/html/home.html'
 })
 export class AppComponent  {
   name :string;
@@ -22,7 +22,7 @@ export class AppComponent  {
   showHobbies :boolean;
   posts:Post[];
   constructor(){
-    this.name = 'Angular';
+    this.name = 'ZAUTO APP';
     this.email = 'deepak@gmail.com';
     this.address = {
       street :'1St Street',
