@@ -3,12 +3,15 @@ import {Http, Headers, RequestOptions, RequestMethod} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Rx";
 
-
 @Injectable()
 export  class  PostsService{
   url:string;
   baseUrl:string;
 
+  /**
+   * Initialise the http request
+   * @param http
+   */
   constructor(private http:Http){
     //this.baseUrl = 'http://52.209.79.99:8080';
     this.baseUrl = 'http://localhost:5050';
@@ -17,9 +20,25 @@ export  class  PostsService{
   getPosts(){
     return this.http.get("https://jsonplaceholder.typicode.com/posts").map(res=>res.json());
   }
+
+  /**
+   * Get Request API
+   * @param serviceName service Name
+   * @returns {Observable<R>}
+   */
+  getRequest(serviceName:string){
+    this.url =  this.makeUrl(serviceName);
+    return this.http.get(this.url).map(res=>res.json());
+  }
+
+  /**
+   * Post Request
+   * @param serviceName Name of the service
+   * @param body  Body of the Post request
+   * @returns {Observable<R>}
+   */
   postRequest(serviceName:string,body:any){
     this.url =  this.makeUrl(serviceName);
-  //  body = {userIds:'23218390821903'};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let bodySend = JSON.stringify(body);
@@ -30,6 +49,12 @@ export  class  PostsService{
     return this.http.get("config.json")
       .map((res:any) => res.json());
   }
+
+  /**
+   * Forms URL Based on the Service name
+   * @param serName Name of the service.
+   * @returns {string}
+   */
   makeUrl(serName:string):string{
     switch(serName){
       case 'INITIATE_PAYBACK':
@@ -37,4 +62,3 @@ export  class  PostsService{
     }
   }
 }
-
