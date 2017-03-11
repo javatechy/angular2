@@ -1,28 +1,25 @@
 // Main app compnent
 import { Component } from '@angular/core';
-import {PostsService} from "./services/posts.service";
-
+import {PostsService}  from '../services/posts.service';
 // Decorator
 @Component({
-  selector: 'my-app',
-  // refers to index.html
-  //template: `<h1>Hello {{name}}</h1>`,
-  /*template: `<ul>
-<li><a routerLink="/">Home</a></li><router-outlet></router-outlet>
-<li><a routerLink="/about">About</a></li>
-<li><a routerLink="/home">Home</a></li>
-</ul><hr/>`,*/
-  templateUrl: 'app/html/home.html'
+  moduleId :module.id,
+  selector: 'user',
+  // refers to index.html file
+  templateUrl:'../html/home.html',
+  providers: [PostsService]
 })
-export class AppComponent  {
+export class HomeComponent  {
   name :string;
   email :string;
   address :address;
   hobbies :string[];
   showHobbies :boolean;
+  config :any;
   posts:Post[];
-  constructor(){
+  constructor(private postsService:PostsService){
     this.name = 'Angular';
+    this.config = this.postsService.readConfig();
     this.email = 'deepak@gmail.com';
     this.address = {
       street :'1St Street',
@@ -30,9 +27,14 @@ export class AppComponent  {
     };
     this.hobbies =['music','sports'];
     this.showHobbies=false;
+    this.postsService.getPosts().subscribe(posts=>{
+    console.log(posts);
+    this.posts=posts;
+    }
+);
   }
   addHobby(hobby: string){
-    this.hobbies.push(hobby);
+  this.hobbies.push(hobby);
   }
   toggleHobbies(){
     if(this.showHobbies==true){

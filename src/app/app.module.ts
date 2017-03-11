@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent }  from './app.component';
 import { UserComponent }  from './components/user.component';
 import { AboutComponent }  from './components/about.component';
+import { HomeComponent }  from './components/home.component';
+
 import {routing} from './app.routing'
 
 import { HttpModule }  from '@angular/http';
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,routing ],
-  declarations: [ AppComponent,UserComponent,AboutComponent ],
+  declarations: [ AppComponent,UserComponent,AboutComponent,HomeComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

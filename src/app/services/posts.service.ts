@@ -24,10 +24,15 @@ export  class  PostsService{
     let bodySend = JSON.stringify(body);
     return this.http.post(this.url,bodySend, headers).map(res=>res.json());
   }
+
+  readConfig(){
+    return this.http.get("config.json")
+      .map((res:any) => res.json());
+  }
   makeUrl(serName:string):string{
     switch(serName){
       case 'TEST':
-         return this.baseUrl+'/zauto/operation/createwallet';
+         return this.baseUrl+'/dd/operation/d';
     }
   }
 }
