@@ -7,6 +7,7 @@ import   {UserComponent } from  './components/user.component';
 import   {AboutComponent } from  './components/about.component';
 import   {HomeComponent } from  './components/home.component';
 import   {PaymentComponent } from  './components/payment.component';
+import   {TransactionComponent } from  './components/transaction.component';
 
 const  appRoutes: Routes =[
   {
@@ -21,6 +22,9 @@ const  appRoutes: Routes =[
   }, {
     path: 'payment',
     component: PaymentComponent
+  },{
+    path: 'transaction',
+    component: TransactionComponent
   }
 ]
 

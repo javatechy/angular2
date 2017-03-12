@@ -22,15 +22,15 @@
           </div>
 
           <div *ngIf="submitted">
-            <h3>Please submitted the following:(Verify)</h3>
+            <h3>Please Verify the following:(Verify)</h3>
             <div class="row">
               <div class="col-md-2">Order Numbers</div>
               <div class="col-md-10 pull-left">{{ submittedModel.orderNumbers }}</div>
             </div>
             <br />
             <button class="btn btn-default" (click)="hitSystemInitiateReversal()">Proceed</button> <a  (click)="submitted=false" class="alert-link">Go Back</a>.
-            <div class="alert alert-success">
-              {{message}} <a  (click)="submitted=false" class="alert-link">Go Back</a>.
+            <div class="alert alert-success" *ngIf="showMessage">
+              {{message}} <a  (click)="submitted=false ;" class="alert-link">Go Back</a>.
             </div>
           </div>
           </div>

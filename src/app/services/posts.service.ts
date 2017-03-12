@@ -2,6 +2,7 @@ import {Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions, RequestMethod} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Rx";
+import {CustomResponse} from "../model/CustomResponse";
 
 @Injectable()
 export  class  PostsService{
@@ -37,11 +38,12 @@ export  class  PostsService{
    * @param body  Body of the Post request
    * @returns {Observable<R>}
    */
-  postRequest(serviceName:string,body:any){
+  postRequest(serviceName:string,body:any):Observable<CustomResponse>{
     this.url =  this.makeUrl(serviceName);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let bodySend = JSON.stringify(body);
+    console.log("HTTP Respoonse: => "+this.http.post(this.url,bodySend, headers).map((res)=>res.json()));
     return this.http.post(this.url,bodySend, headers).map(res=>res.json());
   }
 
@@ -59,6 +61,9 @@ export  class  PostsService{
     switch(serName){
       case 'INITIATE_PAYBACK':
          return this.baseUrl+'/zauto/operation/payback';
+      case 'FETCH_ORDER_INFO':
+        return this.baseUrl+'/zauto/info/order';
+
     }
   }
 }

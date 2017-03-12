@@ -9,6 +9,4 @@ export class Hero {
 
   }
 
-}/**
- * Created by deepak.kumar2 on 3/11/2017.
- */
+}
